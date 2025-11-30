@@ -1,116 +1,191 @@
 /* Card Component Styles */
-:root {
-    --card-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --card-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --card-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --card-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    --card-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
 .card {
-    border-radius: 1.5rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-2xl);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 /* Card Variants */
 .card--default {
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: var(--card-shadow-lg);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-lg);
+  color: var(--text-primary);
 }
 
 .card--primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    box-shadow: var(--card-shadow-xl);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-xl);
 }
 
 .card--secondary {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-    box-shadow: var(--card-shadow-xl);
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-xl);
+}
+
+.card--success {
+  background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-xl);
+}
+
+.card--warning {
+  background: linear-gradient(135deg, var(--color-warning) 0%, #d97706 100%);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-xl);
+}
+
+.card--danger {
+  background: linear-gradient(135deg, var(--color-error) 0%, #dc2626 100%);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-xl);
 }
 
 .card--dark {
-    background: rgba(26, 32, 44, 0.95);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: var(--card-shadow-2xl);
+  background: rgba(15, 23, 42, 0.95);
+  color: var(--text-inverse);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-2xl);
 }
 
 .card--transparent {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: var(--card-shadow-lg);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-lg);
+  color: var(--text-primary);
 }
 
-/* Card Sizes con mejor espaciado */
-.card--small {
-  padding: 1.25rem;
-  max-width: 350px;
-  margin: 0.75rem 0;
-}
-
-.card--medium {
-  padding: 2.5rem;
-  max-width: 600px;
-  width: 100%;
-  margin: 1rem 0;
-}
-
-.card--large {
-  padding: 3rem;
-  max-width: 900px;
-  width: 100%;
-  margin: 1.5rem 0;
-}
-
-.card--extra-large {
-  padding: 3.5rem 3rem;
-  max-width: 1200px;
-  width: 100%;
-  margin: 2rem 0;
-}
-
-/* Glass Effect */
 .card--glass {
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-xl);
+  color: var(--text-primary);
 }
 
 .card--glass::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(255, 255, 255, 0.05) 100%);
-    pointer-events: none;
-    z-index: -1;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Card Sizes */
+.card--sm {
+  padding: var(--spacing-lg);
+  max-width: 350px;
+  margin: var(--spacing-md) 0;
+}
+
+.card--md {
+  padding: var(--spacing-xl);
+  max-width: 600px;
+  width: 100%;
+  margin: var(--spacing-lg) 0;
+}
+
+.card--lg {
+  padding: var(--spacing-2xl);
+  max-width: 900px;
+  width: 100%;
+  margin: var(--spacing-xl) 0;
+}
+
+.card--xl {
+  padding: calc(var(--spacing-2xl) + var(--spacing-md)) var(--spacing-2xl);
+  max-width: 1200px;
+  width: 100%;
+  margin: var(--spacing-2xl) 0;
 }
 
 /* Hover Effects */
+.card--hover {
+  cursor: pointer;
+}
+
 .card--hover:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--card-shadow-2xl), 0 0 40px rgba(102, 126, 234, 0.2);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-2xl), 0 0 40px rgba(99, 102, 241, 0.2);
 }
 
 .card--primary.card--hover:hover {
-    box-shadow: var(--card-shadow-2xl), 0 0 40px rgba(102, 126, 234, 0.4);
+  box-shadow: var(--shadow-2xl), 0 0 40px rgba(99, 102, 241, 0.4);
 }
 
 .card--secondary.card--hover:hover {
-    box-shadow: var(--card-shadow-2xl), 0 0 40px rgba(240, 147, 251, 0.4);
+  box-shadow: var(--shadow-2xl), 0 0 40px rgba(236, 72, 153, 0.4);
 }
 
 .card--dark.card--hover:hover {
-    box-shadow: var(--card-shadow-2xl), 0 0 40px rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-2xl), 0 0 40px rgba(255, 255, 255, 0.1);
+}
+
+/* Card Content Structure */
+.card__header {
+  margin-bottom: var(--spacing-lg);
+}
+
+.card__title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-sm) 0;
+  color: inherit;
+}
+
+.card__subtitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: inherit;
+  opacity: 0.9;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.card__body {
+  flex: 1;
+}
+
+.card__footer {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Special Effects */
+.card--animated {
+  animation: fadeIn var(--transition-normal);
+}
+
+.card--bordered {
+  border: 2px solid var(--border-medium);
+}
+
+.card--elevated {
+  box-shadow: var(--shadow-2xl);
+}
+
+.card--rainbow {
+  background: linear-gradient(45deg, #ff6b6b, #ffa500, #ffff00, #32cd32, #1e90ff, #9370db);
+  background-size: 400% 400%;
+  animation: rainbow 3s ease infinite;
+  color: white;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Responsive Design */

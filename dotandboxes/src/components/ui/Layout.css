@@ -4,100 +4,111 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 2rem;
+  padding: var(--spacing-2xl);
   font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   position: relative;
   overflow-x: hidden;
+  animation: fadeIn var(--transition-normal);
 }
 
 .layout-content {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: var(--spacing-lg) 0;
+  position: relative;
+  z-index: 2;
 }
 
 /* Gradient Background Variants */
 .layout--default {
-    background: linear-gradient(135deg,
-            #667eea 0%,
-            #764ba2 25%,
-            #f093fb 50%,
-            #f5576c 75%,
-            #4facfe 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+  background: linear-gradient(135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 25%,
+    var(--color-secondary) 50%,
+    var(--color-secondary-dark) 75%,
+    var(--color-accent) 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
 }
 
 .layout--gaming {
-    background: linear-gradient(135deg,
-            #1e3c72 0%,
-            #2a5298 25%,
-            #667eea 50%,
-            #764ba2 75%,
-            #f093fb 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 12s ease infinite;
+  background: linear-gradient(135deg,
+    #1e3c72 0%,
+    #2a5298 25%,
+    var(--color-primary) 50%,
+    var(--color-primary-dark) 75%,
+    var(--color-secondary) 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
 }
 
 .layout--minimal {
-    background: linear-gradient(135deg,
-            #f8fafc 0%,
-            #e2e8f0 50%,
-            #cbd5e0 100%);
+  background: linear-gradient(135deg,
+    var(--bg-primary) 0%,
+    var(--bg-tertiary) 50%,
+    var(--color-gray-300) 100%);
+}
+
+.layout--dark {
+  background: linear-gradient(135deg,
+    var(--color-gray-800) 0%,
+    var(--color-gray-900) 50%,
+    #0f0f23 100%);
 }
 
 /* Animated Background Effects */
 .layout-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 1;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-.layout--minimal::before {
-    background: none;
+.layout--minimal::before,
+.layout--dark::before {
+  background: none;
 }
 
 @keyframes gradientShift {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
+/* Layout Content Structure */
 .layout-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
 }
 
 /* Game Layout Responsive Structure */
 .tic-tac-toe-game,
 .dots-box-game {
-    width: 100%;
-    display: grid;
-    gap: 1rem;
-    /* Mobile-first: Solo turn-indicator y área de juego */
-    grid-template-areas:
-        "turn-indicator"
-        "game-board";
+  width: 100%;
+  display: grid;
+  gap: var(--spacing-lg);
+  /* Mobile-first: Solo turn-indicator y área de juego */
+  grid-template-areas:
+    "turn-indicator"
+    "game-board";
     grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
