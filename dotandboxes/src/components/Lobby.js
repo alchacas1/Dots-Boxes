@@ -53,7 +53,10 @@ function Lobby() {
       console.log("Recibido startGame:", data);
 
       // Navegar al juego correspondiente según el tipo
-      const gameRoute = data.gameType === 'tic-tac-toe' ? '/tic-tac-toe' : '/dotsandboxes';
+      const gameRoute =
+        data.gameType === 'tic-tac-toe' ? '/tic-tac-toe' :
+        data.gameType === 'sea-battle-2' ? '/sea-battle-2' :
+        '/dotsandboxes';
 
       navigate(gameRoute, {
         state: {
@@ -103,7 +106,11 @@ function Lobby() {
     }
 
     console.log("Intentando unirse a sala:", { roomCode, playerName, gameType, gridSize });
-    setIsWaitingForPlayers(true); const finalGridSize = gameType === 'tic-tac-toe' ? 3 :
+    setIsWaitingForPlayers(true);
+
+    const finalGridSize =
+      gameType === 'tic-tac-toe' ? 3 :
+      gameType === 'sea-battle-2' ? 10 :
       (gridSize === "custom" ? parseInt(customGridSize) : parseInt(gridSize));
 
     socket.emit("joinRoom", {
@@ -123,7 +130,8 @@ function Lobby() {
 
   const gameTypeOptions = [
     { value: 'dots-boxes', label: 'Dots & Boxes', icon: '⚪' },
-    { value: 'tic-tac-toe', label: '3 en Línea', icon: '❌' }
+    { value: 'tic-tac-toe', label: '3 en Línea', icon: '❌' },
+    { value: 'sea-battle-2', label: 'Sea Battle 2', icon: '🚢' }
   ];
 
   const gridSizeOptions = [
@@ -141,6 +149,7 @@ function Lobby() {
   const gridGames = [
     { value: 'dots-boxes', label: 'Dots & Boxes', icon: '⚪' },
     { value: 'tic-tac-toe', label: '3 en Línea', icon: '❌' },
+    { value: 'sea-battle-2', label: 'Sea Battle 2', icon: '🚢' },
     { value: 'test-dotsbox', label: 'Pruebas D&B', icon: '🔧' },
     { value: 'coming-soon-1', label: 'Próximamente', icon: '🎲' },
     { value: 'coming-soon-2', label: 'Próximamente', icon: '🧩' },
@@ -150,7 +159,7 @@ function Lobby() {
     { value: 'coming-soon-6', label: 'Próximamente', icon: '🧠' },
   ];
   const handleGameSelect = (game) => {
-    if (game.value === 'dots-boxes' || game.value === 'tic-tac-toe') {
+    if (game.value === 'dots-boxes' || game.value === 'tic-tac-toe' || game.value === 'sea-battle-2') {
       setSelectedGame(game.value);
       setGameType(game.value);
     } else if (game.value === 'test-dotsbox') {
@@ -182,28 +191,29 @@ function Lobby() {
   }
   return (
     <Layout variant="default">
-      <Card size="large" variant="glass">        <Header
-        title="Juegos Multijugador"
-        icon="🎮"
-        variant="gradient"
-        size="large"
-      >
-        <Button
-          variant="minimal"
-          size="small"
-          onClick={() => {
-            setSelectedGame(null);
-            setRoomGameType(null);
-            setRoomGridSize(null);
-            setGridSize(3);
-            setCustomGridSize("");
-            setAlert(null);
-          }}
-          icon="←"
+      <Card size="large" variant="glass">
+        <Header
+          title="Juegos Multijugador"
+          icon="🎮"
+          variant="gradient"
+          size="large"
         >
-          Ir atrás
-        </Button>
-      </Header>
+          <Button
+            variant="minimal"
+            size="small"
+            onClick={() => {
+              setSelectedGame(null);
+              setRoomGameType(null);
+              setRoomGridSize(null);
+              setGridSize(3);
+              setCustomGridSize("");
+              setAlert(null);
+            }}
+            icon="←"
+          >
+            Ir atrás
+          </Button>
+        </Header>
 
         {alert && (
           <Alert

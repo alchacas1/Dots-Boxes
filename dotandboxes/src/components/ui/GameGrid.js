@@ -36,7 +36,7 @@ const GameGrid = ({
 };
 
 const GameCard = ({ game, onClick, variant, size }) => {
-    const isAvailable = game.value === 'dots-boxes' || game.value === 'tic-tac-toe';
+    const isAvailable = game.value === 'dots-boxes' || game.value === 'tic-tac-toe' || game.value === 'sea-battle-2';
     const cardClass = `game-card game-card--${variant} game-card--${size}`;
     const modifierClasses = [
         isAvailable ? 'game-card--available' : 'game-card--disabled'
